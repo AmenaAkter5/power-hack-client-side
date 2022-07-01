@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import AddBill from './AddBill';
 import DeleteBill from './DeleteBill';
+import UpdateBill from './UpdateBill';
 
 
 const Table = ({ addBill, setAddBill, handleShow }) => {
@@ -29,7 +29,7 @@ const Table = ({ addBill, setAddBill, handleShow }) => {
                 setBills(data)
             })
 
-    }, [bills]);
+    }, [bills, singleBill]);
 
 
     return (
@@ -64,11 +64,12 @@ const Table = ({ addBill, setAddBill, handleShow }) => {
                 </table>
             </div>
             {
-                singleBill && <AddBill
+                singleBill && <UpdateBill
                     singleBill={singleBill}
                     addBill={addBill}
                     setAddBill={setAddBill}
-                ></AddBill>
+                    setSingleBill={setSingleBill}
+                ></UpdateBill>
             }
             {
                 singleBill && <DeleteBill
