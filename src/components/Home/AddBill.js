@@ -29,7 +29,6 @@ const AddBill = ({ setAddBill }) => {
             .then(res => res.json())
             .then(data => {
 
-                // booking success হলে
                 if (data.success) {
                     // toast(`Appointment is set`)
                 }

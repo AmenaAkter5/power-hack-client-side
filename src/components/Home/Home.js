@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import HomeHeader from './HomeHeader';
-import Table from './Table';
 
 const Home = () => {
 
@@ -15,11 +14,6 @@ const Home = () => {
                 setAddBill={setAddBill}
                 handleShow={handleShow}
             ></HomeHeader>
-            <Table
-                addBill={addBill}
-                setAddBill={setAddBill}
-                handleShow={handleShow}
-            ></Table>
         </div>
     );
 };

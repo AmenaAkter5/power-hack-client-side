@@ -1,7 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import useBills from '../../hooks/useBills';
 import AddBill from './AddBill';
+import DeleteBill from './DeleteBill';
+import UpdateBill from './UpdateBill';
 
 const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
+
+    const [bills, setBills] = useBills();
+
+    const [singleBill, setSingleBill] = useState(null);
+
+
+    // এই
+
+    const [searchResult, setSearchResult] = useState(bills);
+
+    const handleSearch = event => {
+        const searchText = event.target.value;
+        const result = bills.filter(bill => bill.name.toLowerCase().includes(searchText));
+        setSearchResult(result);
+    }
+
+
+
+    useEffect(() => {
+
+        fetch(`http://localhost:5000/api/billing-list`)
+
+            .then(res => {
+
+                if (res.status === 401 || res.status === 403) {
+
+                    /* signOut(auth);
+                    localStorage.removeItem('accessToken');
+                    navigate('/'); */
+                }
+
+                return res.json();
+            })
+
+            .then(data => {
+                setSearchResult(data)
+            });
+
+    }, []);
 
     return (
 
@@ -11,7 +53,7 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
                     <h3 className='px-8 text-xl text-white font-bold'>Billings</h3>
                     <div className="form-control">
                         <div className="input-group h-4/5">
-                            <input type="text" placeholder="Search…" className="input input-bordered" />
+                            <input type="text" onChange={handleSearch} placeholder="Search…" className="input input-bordered" />
                             <button className="btn btn-small text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                             </button>
@@ -28,6 +70,54 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
                     setAddBill={setAddBill}
                 ></AddBill>
             }
+
+            <div>
+                <div className="overflow-x-auto w-11/12 mx-auto">
+                    <table className="table w-full">
+                        <thead>
+                            <tr>
+                                <th>Billing Id</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Paid amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                searchResult.map((bill, index) => <tr key={index}>
+                                    <th>{bill._id}</th>
+                                    <td>{bill.name}</td>
+                                    <td>{bill.email}</td>
+                                    <td>{bill.phone}</td>
+                                    <td>{bill.amount}</td>
+                                    <td>
+                                        <label htmlFor="add-bill" className="btn btn-sm mr-5 font-bold text-white" onClick={() => setSingleBill(bill)}>Edit</label>
+                                        <label htmlFor="delete-modal" onClick={() => setSingleBill(bill)} className="btn btn-sm btn-error font-bold">Delete</label>
+                                    </td>
+                                </tr>)
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                {
+                    singleBill && <UpdateBill
+                        singleBill={singleBill}
+                        addBill={addBill}
+                        setAddBill={setAddBill}
+                        setSingleBill={setSingleBill}
+                    ></UpdateBill>
+                }
+                {
+                    singleBill && <DeleteBill
+                        singleBill={singleBill}
+                        bills={bills}
+                        setBills={setBills}
+                        setSingleBill={setSingleBill}
+                    ></DeleteBill>
+                }
+            </div>
         </div>
     );
 };
