@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import hack from '../../images/power.PNG';
 
 
 const SignUp = () => {
@@ -58,6 +59,7 @@ const SignUp = () => {
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
+                <img src={hack} alt="" />
                 <div className="card-body">
                     <h2 className="text-center text-2xl font-bold">Sign Up</h2>
 
@@ -121,16 +123,6 @@ const SignUp = () => {
                     </form>
 
                     <p className='text-center'>Already Have an account? <a href="/login" className='text-secondary'>Log in Please</a></p>
-                    <div className="divider">OR</div>
-                    <button
-                        className="btn btn-outline"
-                    >Continue With Google
-                    </button>
-                    {/* <button
-                        onClick={() => signInWithGoogle()}
-                        className="btn btn-outline"
-                    >Continue With Google
-                    </button> */}
                 </div>
             </div>
         </div >

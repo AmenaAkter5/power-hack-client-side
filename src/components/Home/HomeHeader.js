@@ -6,9 +6,28 @@ import UpdateBill from './UpdateBill';
 
 const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
 
-    const [bills, setBills] = useBills();
+    // const [bills, setBills] = useBills();
+
+    const [bills, setBills] = useState([]);
 
     const [singleBill, setSingleBill] = useState(null);
+
+    // pageCount state
+    const [pageCount, setPageCount] = useState(0);
+    // page size
+    const [pageSize, setPageSize] = useState(10);
+    // exist page
+    const [existPage, setExistPage] = useState(0);
+
+    // data load for pagination
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/billing-list?existPage=${existPage}&pageSize=${pageSize}`)
+            .then(req => req.json())
+            .then(data => {
+                setBills(data);
+                setSearchResult(data)
+            });
+    }, [existPage, pageSize]);
 
 
     // এই
@@ -23,7 +42,7 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
 
 
 
-    useEffect(() => {
+    /* useEffect(() => {
 
         fetch(`http://localhost:5000/api/billing-list`)
 
@@ -31,9 +50,9 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
 
                 if (res.status === 401 || res.status === 403) {
 
-                    /* signOut(auth);
-                    localStorage.removeItem('accessToken');
-                    navigate('/'); */
+                    // signOut(auth);
+                    // localStorage.removeItem('accessToken');
+                    // navigate('/');
                 }
 
                 return res.json();
@@ -43,7 +62,19 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
                 setSearchResult(data)
             });
 
-    }, []);
+    }, []); */
+
+
+    useEffect(() => {
+        fetch('http://localhost:5000/billCount')
+            .then(res => res.json())
+            .then(data => {
+                const totalProduct = data.count;
+                const totalPage = Math.ceil(totalProduct / 10);
+                setPageCount(totalPage);
+            })
+    }, [])
+
 
     return (
 
@@ -99,6 +130,23 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
                                 </tr>)
                             }
                         </tbody>
+                        {/* create pagination button */}
+                        <div>
+                            {
+                                [...Array(pageCount).keys()].map(number =>
+                                    <button
+                                        className={`m-2 ${existPage === number ? 'btn btn-primary' : 'btn'}`} onClick={() => setExistPage(number)}>
+
+                                        {number + 1}
+                                    </button>)
+                            }
+
+                            <select onChange={event => setPageSize(event.target.value)} className='bg-primary w-10 h-10 text-white'>
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="15">15</option>
+                            </select>
+                        </div>
                     </table>
                 </div>
                 {
