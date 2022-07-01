@@ -11,7 +11,6 @@ const AddBill = ({ addBill, setAddBill }) => {
         const phone = event.target.phone.value;
         const amount = event.target.amount.value;
 
-        // Module - 74
         const bill = {
             name,
             email,
