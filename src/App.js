@@ -5,6 +5,8 @@ import Login from './components/Login/Login';
 import SignUp from './components/Login/SignUp';
 import Home from './components/Home/Home';
 
+// #154E64
+
 function App() {
   return (
     <div>
