@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const SignUp = () => {
@@ -10,47 +10,12 @@ const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
 
-    // use token
-    // const [token] = useToken(user || gUser);
-
-
-    // use navigate hook
-    // const navigate = useNavigate();
-
-
-    // after getting token redirect user to the previous page
-    /* useEffect(() => {
-
-        if (token) {
-            navigate('/home');
-        }
-
-    }, [token, navigate]) */
-
-
-
-    // error message declare and error handle
-    /* let errorMessage;
-
-    if (error || gError || updateError) {
-        errorMessage = <p className='text-red-600'>{error?.message || gError?.message || updateError?.message}</p>
-    } */
-
-
     // form submit
-
     const onSubmit = async data => {
 
         const name = data.name;
         const email = data.email;
         const password = data.password;
-
-        // create user sign in
-        // await createUserWithEmailAndPassword(email, password);
-
-        // update profile
-        // await updateProfile({ displayName: name });
-
 
         const result = await fetch('http://localhost:5000/api/registration', {
             method: 'POST',
@@ -66,12 +31,28 @@ const SignUp = () => {
 
         if (result.status === 'ok') {
             // everythign went fine
+            localStorage.setItem('token', result.data)
             alert('Success')
         }
         else {
             alert(result.error)
         }
     };
+
+
+    // use token
+    const token = localStorage.getItem('token');
+
+    // use navigate hook
+    const navigate = useNavigate();
+
+
+    // after getting token redirect user to the previous page
+    useEffect(() => {
+        if (token) {
+            navigate('/home');
+        }
+    }, [token, navigate])
 
 
     return (

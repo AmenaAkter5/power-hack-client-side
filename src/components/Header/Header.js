@@ -7,9 +7,7 @@ const Header = () => {
 
     // menu items
     const menuItems = <>
-        <li><Link to="/home">Home</Link></li>
-        <li><Link to="/login">Log In</Link></li>
-        <li><Link to="/signup">Sign Up</Link></li>
+        <li>Total Paid</li>
         {/* {user && <li><Link to="/dashboard">Dashboard</Link></li>}
         <li>{user ? <button onClick={logOut} className="btn btn-ghost font-bold">Sign Out</button> : <Link to="/login">Login</Link>}</li> */}
     </>
