@@ -6,33 +6,29 @@ const AddBill = ({ addBill, setAddBill }) => {
     const handleAddBill = event => {
         event.preventDefault();
 
-        const slot = event.target.slot.value;
-        // console.log(_id, name, slot);
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const phone = event.target.phone.value;
+        const amount = event.target.amount.value;
 
         // Module - 74
-        const booking = {
-            treatmentId: _id,
-            treatment: name,
-            date: formattedDate,
-            slot: slot,
-            patient: user.email,
-            patientName: user.displayName,
-            phone: event.target.phone.value
+        const bill = {
+            name,
+            email,
+            phone,
+            amount
         }
 
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('http://localhost:5000/api/add-billing', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(booking)
+            body: JSON.stringify(bill)
         })
             .then(res => res.json())
             .then(data => {
-
-                // using toast
-                // toast('Booking is Successful')
 
                 // booking success হলে
                 if (data.success) {
