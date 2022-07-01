@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AddBill from './AddBill';
 
-const HomeHeader = () => {
-
-
-    const [addBill, setAddBill] = useState(false);
-
-    const handleShow = () => setAddBill(true);
+const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
 
     return (
 

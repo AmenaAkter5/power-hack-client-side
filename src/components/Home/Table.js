@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import AddBill from './AddBill';
+import DeleteBill from './DeleteBill';
 
 
-const Table = () => {
+const Table = ({ addBill, setAddBill, handleShow }) => {
 
     const [bills, setBills] = useState([]);
+
+    const [singleBill, setSingleBill] = useState(null);
 
     useEffect(() => {
 
@@ -27,50 +31,53 @@ const Table = () => {
 
     }, [bills]);
 
+
     return (
-        <div class="overflow-x-auto w-11/12 mx-auto">
-            <table class="table w-full">
-                <thead>
-                    <tr>
-                        <th>Billing Id</th>
-                        <th>Full Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Paid amount</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        bills.map((bill, index) => <tr key={index}>
-                            <th>{bill._id}</th>
-                            <td>{bill.name}</td>
-                            <td>{bill.email}</td>
-                            <td>{bill.phone}</td>
-                            <td>{bill.amount}</td>
-                            <td>
-                                {/* {(bill.price && !bill.paid) && <p className=' text-red-600 font-bold'>Unpaid</p>}
-                                {(bill.price && bill.paid && !bill.shipment) && <div>
-                                    <span className='text-green-600 font-bold'>Pending</span>
-                                    <p>Transaction Id: <span className='text-orange-600'>{bill.transactionId}</span></p>
-                                </div>}
-                                {(bill.price && bill.paid && bill.shipment) && <div>
-                                    <p className='text-primary font-bold'>Shipped</p>
-                                </div>} */}
-                            </td>
-                            <td>
-                                {/* {(bill.price && bill.paid && !bill.shipment) && <button
-                                    onClick={() => handleShipment(bill._id)}
-                                    className='btn btn-xs btn-primary text-white font-bold'>Shipment</button>}
-                                {
-                                    (bill.price && !bill.paid && !bill.shipment) &&
-                                    <label htmlFor="delete-modal" onClick={() => setOrder(bill)} className='btn btn-xs btn-error text-white font-bold'>Cancel</label>
-                                } */}
-                            </td>
-                        </tr>)
-                    }
-                </tbody>
-            </table>
+        <div>
+            <div className="overflow-x-auto w-11/12 mx-auto">
+                <table className="table w-full">
+                    <thead>
+                        <tr>
+                            <th>Billing Id</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Paid amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            bills.map((bill, index) => <tr key={index}>
+                                <th>{bill._id}</th>
+                                <td>{bill.name}</td>
+                                <td>{bill.email}</td>
+                                <td>{bill.phone}</td>
+                                <td>{bill.amount}</td>
+                                <td>
+                                    <label htmlFor="add-bill" className="btn btn-sm mr-5 font-bold text-white" onClick={() => setSingleBill(bill)}>Edit</label>
+                                    <label htmlFor="delete-modal" onClick={() => setSingleBill(bill)} className="btn btn-sm btn-error font-bold">Delete</label>
+                                </td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
+            </div>
+            {
+                singleBill && <AddBill
+                    singleBill={singleBill}
+                    addBill={addBill}
+                    setAddBill={setAddBill}
+                ></AddBill>
+            }
+            {
+                singleBill && <DeleteBill
+                    singleBill={singleBill}
+                    bills={bills}
+                    setBills={setBills}
+                    setSingleBill={setSingleBill}
+                ></DeleteBill>
+            }
         </div>
     );
 };

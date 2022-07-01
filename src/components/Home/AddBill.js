@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddBill = ({ addBill, setAddBill }) => {
+const AddBill = ({ setAddBill, singleBill }) => {
 
 
     const handleAddBill = event => {
@@ -34,18 +34,14 @@ const AddBill = ({ addBill, setAddBill }) => {
                     // toast(`Appointment is set`)
                 }
 
-                // booking success না হলে
                 else {
                     // toast.error(`Already have an appointment on`)
                 }
 
-                // refetch from react query
-                // refetch();
-
-
                 // to close the modal
                 setAddBill(false);
             })
+
 
     }
 
@@ -60,7 +56,7 @@ const AddBill = ({ addBill, setAddBill }) => {
                     <h3 className="font-bold text-lg text-primary">Add a New Bill</h3>
                     <form onSubmit={handleAddBill} className='grid grid-cols-1 gap-4 justify-items-center mt-6'>
 
-                        <input type="text" name='name' placeholder="Your Name" className="input input-bordered w-full max-w-xs" />
+                        <input type="text" name='name' placeholder="Your Name" value={singleBill.name || ""} className="input input-bordered w-full max-w-xs" />
 
                         <input type="email" name='email' placeholder="Email Address" className="input input-bordered w-full max-w-xs" />
 
