@@ -5,7 +5,7 @@ const DeleteBill = ({ singleBill, setSingleBill, bills, setBills }) => {
     // handle delete button
     const handleDelete = id => {
 
-        const url = `http://localhost:5000/api/delete-billing/${id}`
+        const url = `https://power-hack-superb.herokuapp.com/api/delete-billing/${id}`
         fetch(url, {
             method: 'DELETE'
         })

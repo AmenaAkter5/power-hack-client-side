@@ -16,7 +16,7 @@ const Login = () => {
         const email = data.email;
         const password = data.password;
 
-        const result = await fetch('http://localhost:5000/api/login', {
+        const result = await fetch('https://power-hack-superb.herokuapp.com/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

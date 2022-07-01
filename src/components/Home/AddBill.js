@@ -19,7 +19,7 @@ const AddBill = ({ setAddBill }) => {
         }
 
 
-        fetch('http://localhost:5000/api/add-billing', {
+        fetch('https://power-hack-superb.herokuapp.com/api/add-billing', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

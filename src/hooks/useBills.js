@@ -10,7 +10,7 @@ const useBills = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/api/billing-list`)
+        fetch(`https://power-hack-superb.herokuapp.com/api/billing-list`)
 
             .then(res => {
 

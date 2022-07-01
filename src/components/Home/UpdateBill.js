@@ -19,7 +19,7 @@ const UpdateBill = ({ singleBill, setSingleBill }) => {
 
 
         // update data to server
-        const url = `http://localhost:5000/api/update-billing/${singleBill._id}`
+        const url = `https://power-hack-superb.herokuapp.com/api/update-billing/${singleBill._id}`
 
         fetch(url, {
             method: 'PUT',

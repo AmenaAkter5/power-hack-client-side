@@ -20,7 +20,7 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
 
     // data load for pagination
     useEffect(() => {
-        fetch(`http://localhost:5000/api/billing-list?existPage=${existPage}&pageSize=${pageSize}`)
+        fetch(`https://power-hack-superb.herokuapp.com/api/billing-list?existPage=${existPage}&pageSize=${pageSize}`)
             .then(req => req.json())
             .then(data => {
                 setBills(data);
@@ -43,7 +43,7 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
 
     /* useEffect(() => {
 
-        fetch(`http://localhost:5000/api/billing-list`)
+        fetch(`https://power-hack-superb.herokuapp.com/api/billing-list`)
 
             .then(res => {
 
@@ -65,7 +65,7 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/billCount')
+        fetch('https://power-hack-superb.herokuapp.com/billCount')
             .then(res => res.json())
             .then(data => {
                 const totalProduct = data.count;
