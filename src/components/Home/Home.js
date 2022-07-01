@@ -29,17 +29,6 @@ const Home = () => {
                 setAddBill={setAddBill}
                 handleShow={handleShow}
             ></HomeHeader>
-            {/*  {
-                token && <HomeHeader
-                    addBill={addBill}
-                    setAddBill={setAddBill}
-                    handleShow={handleShow}
-                ></HomeHeader>
-            }
-
-            {
-                !token && <Login></Login>
-            } */}
         </div>
     );
 };

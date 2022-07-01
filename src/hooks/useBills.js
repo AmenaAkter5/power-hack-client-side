@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 const useBills = () => {
 
     const [bills, setBills] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -13,9 +16,8 @@ const useBills = () => {
 
                 if (res.status === 401 || res.status === 403) {
 
-                    /* signOut(auth);
                     localStorage.removeItem('accessToken');
-                    navigate('/'); */
+                    navigate('/login');
                 }
 
                 return res.json();
@@ -25,7 +27,7 @@ const useBills = () => {
                 setBills(data)
             });
 
-    }, [bills]);
+    }, [bills, setBills, navigate]);
 
     return [bills, setBills];
 };

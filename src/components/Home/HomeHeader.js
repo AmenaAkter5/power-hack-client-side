@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import useBills from '../../hooks/useBills';
 import AddBill from './AddBill';
 import DeleteBill from './DeleteBill';
 import UpdateBill from './UpdateBill';
@@ -27,7 +26,7 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
                 setBills(data);
                 setSearchResult(data)
             });
-    }, [existPage, pageSize]);
+    }, [existPage, pageSize, bills]);
 
 
     // এই
