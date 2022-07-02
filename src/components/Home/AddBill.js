@@ -55,13 +55,13 @@ const AddBill = ({ setAddBill }) => {
                     <h3 className="font-bold text-lg text-primary">Add a New Bill</h3>
                     <form onSubmit={handleAddBill} className='grid grid-cols-1 gap-4 justify-items-center mt-6'>
 
-                        <input type="text" name='name' placeholder="Your Name" className="input input-bordered w-full max-w-xs" />
+                        <input required type="text" name='name' placeholder="Your Name" className="input input-bordered w-full max-w-xs" />
 
-                        <input type="email" name='email' placeholder="Email Address" className="input input-bordered w-full max-w-xs" />
+                        <input required type="email" name='email' placeholder="Email Address" className="input input-bordered w-full max-w-xs" />
 
-                        <input type="number" name='phone' placeholder="Phone Number" className="input input-bordered w-full max-w-xs" />
+                        <input required type="number" name='phone' placeholder="Phone Number" className="input input-bordered w-full max-w-xs" />
 
-                        <input type="number" name='amount' placeholder="Paid Amount" className="input input-bordered w-full max-w-xs" />
+                        <input required type="number" name='amount' placeholder="Paid Amount" className="input input-bordered w-full max-w-xs" />
 
                         <input type="submit" value='Submit' className="btn btn-primary text-white w-full max-w-xs font-bold" />
                     </form>

@@ -11,6 +11,7 @@ const Header = () => {
     const [bills] = useBills();
 
     const amount = bills.map(bill => parseFloat(bill.amount));
+    // console.log(amount);
     const sum = amount.reduce((a, b) => a + b, 0);
 
     useEffect(() => {

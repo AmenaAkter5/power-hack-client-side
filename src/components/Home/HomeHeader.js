@@ -26,7 +26,7 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
                 setBills(data);
                 setSearchResult(data)
             });
-    }, [existPage, pageSize, bills]);
+    }, [existPage, pageSize]);
 
 
     // এই
