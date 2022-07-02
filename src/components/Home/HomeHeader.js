@@ -42,30 +42,6 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
     }
 
 
-
-    /* useEffect(() => {
-
-        fetch(`https://power-hack-superb.herokuapp.com/api/billing-list`)
-
-            .then(res => {
-
-                if (res.status === 401 || res.status === 403) {
-
-                    // signOut(auth);
-                    // localStorage.removeItem('accessToken');
-                    // navigate('/');
-                }
-
-                return res.json();
-            })
-
-            .then(data => {
-                setSearchResult(data)
-            });
-
-    }, []); */
-
-
     useEffect(() => {
         fetch('https://power-hack-superb.herokuapp.com/billCount')
             .then(res => res.json())
