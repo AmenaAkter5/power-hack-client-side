@@ -12,6 +12,7 @@ const Home = () => {
 
     // after getting token redirect user to the previous page
     useEffect(() => {
+
         if (!token) {
             navigate('/login');
         }

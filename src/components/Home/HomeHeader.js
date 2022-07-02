@@ -20,12 +20,14 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
 
     // data load for pagination
     useEffect(() => {
+
         fetch(`https://power-hack-superb.herokuapp.com/api/billing-list?existPage=${existPage}&pageSize=${pageSize}`)
             .then(req => req.json())
             .then(data => {
                 setBills(data);
                 setSearchResult(data)
             });
+
     }, [existPage, pageSize]);
 
 
@@ -123,7 +125,7 @@ const HomeHeader = ({ addBill, setAddBill, handleShow }) => {
                                     <td>{bill.phone}</td>
                                     <td>{bill.amount}</td>
                                     <td>
-                                        <label htmlFor="add-bill" className="btn btn-sm mr-5 font-bold text-white" onClick={() => setSingleBill(bill)}>Edit</label>
+                                        <label htmlFor="update-bill" className="btn btn-sm mr-5 font-bold text-white" onClick={() => setSingleBill(bill)}>Edit</label>
                                         <label htmlFor="delete-modal" onClick={() => setSingleBill(bill)} className="btn btn-sm btn-error font-bold">Delete</label>
                                     </td>
                                 </tr>)
