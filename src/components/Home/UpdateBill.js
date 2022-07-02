@@ -47,7 +47,7 @@ const UpdateBill = ({ singleBill, setSingleBill }) => {
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <label htmlFor="add-bill" className="btn btn-sm btn-circle absolute right-2 top-2 font-bold text-white">✕</label>
-                    <h3 className="font-bold text-lg text-primary">Add a New Bill</h3>
+                    <h3 className="font-bold text-lg text-primary">Update Your Bill</h3>
                     <form onSubmit={handleUpdateBill} className='grid grid-cols-1 gap-4 justify-items-center mt-6'>
 
                         <input required type="text" name='name' placeholder="Your Name" className="input input-bordered w-full max-w-xs" />
